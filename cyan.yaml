@@ -1,0 +1,10 @@
+username: atomi
+name: workspace
+description: CyanPrint Template to initialize new CyanPrint workspace, which includes default CI, gitignore, scripts and sg configurations
+project: https://github.com/AtomiCloud/ketone.workspace
+source: https://github.com/AtomiCloud/ketone.workspace
+email: ernest@atomi.cloud
+tags: ['atomicloud', 'generic']
+readme: cyan/README.MD
+processors: ['cyan/default']
+plugins: []

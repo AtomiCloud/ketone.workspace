@@ -1,0 +1,153 @@
+name: CI-CD
+
+on:
+  push:
+
+<%= if (docker.commit || helm.commit || docker.release || helm.release) { %>
+env:
+  # Docker
+  DOCKER_DOMAIN: ghcr.io
+  DOCKER_USER: ${{ github.actor }}
+  DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+  DOCKER_LATEST_BRANCH: main
+<%= } %>
+
+jobs:
+  precommit:
+    name: Pre-commit Check
+    runs-on:
+      - nscloud-ubuntu-22.04-amd64-4x8-with-cache
+      - nscloud-cache-size-50gb
+      - nscloud-cache-tag-var__platform__-var__service__-nix-store-cache
+      - nscloud-git-mirror-1gb
+    steps:
+      # Setup
+      - uses: AtomiCloud/actions.setup-nix@v1.2.1
+      - uses: AtomiCloud/actions.cache-go@v1.0.1
+
+      # pre commit
+      - name: Run pre-commit
+        run: nix develop .#ci -c ./scripts/ci/pre-commit.sh
+  <%= if (docker.commit) { %>
+  docker:
+    name: Build Docker
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+    runs-on:
+      - ubuntu-22.04
+    strategy:
+      matrix:
+        configs:
+          - image-name: var__platform__-var__service__
+            dockerfile: infra/Dockerfile
+            context: .
+            platform: var__docker.platform__
+    env:
+      STRAT_DOCKER_IMAGE: ${{ matrix.configs.image-name }}
+      STRAT_DOCKERFILE: ${{ matrix.configs.dockerfile }}
+      STRAT_DOCKER_CONTEXT: ${{ matrix.configs.context }}
+      STRAT_DOCKER_PLATFORM: ${{ matrix.configs.platform }}
+    steps:
+      # Setup
+      - uses: AtomiCloud/actions.setup-docker@v1.2.0
+
+      # action
+      - uses: rlespinasse/github-slug-action@v5.x
+        with:
+          short-length: 8
+      - name: Build and Push Docker
+        run: ./scripts/ci/ci-docker.sh
+        env:
+          CI_DOCKER_IMAGE: ${{ env.STRAT_DOCKER_IMAGE }}
+          CI_DOCKER_CONTEXT: ${{ env.STRAT_DOCKER_CONTEXT }}
+          CI_DOCKERFILE: ${{ env.STRAT_DOCKERFILE }}
+          CI_DOCKER_PLATFORM: ${{ env.STRAT_DOCKER_PLATFORM }}
+
+          DOMAIN: ${{ env.DOCKER_DOMAIN }}
+
+          GITHUB_REPO_REF: ${{ github.repository }}
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_BRANCH: ${{ env.GITHUB_REF_SLUG }}
+
+          DOCKER_PASSWORD: ${{ env.DOCKER_PASSWORD }}
+          DOCKER_USER: ${{ env.DOCKER_USER }}
+
+          LATEST_BRANCH: ${{ env.DOCKER_LATEST_BRANCH }}
+  <%= } %>
+
+  <%= if (helm.commit) { %>
+  helm:
+    name: Build Helm
+    runs-on:
+      - nscloud-ubuntu-22.04-amd64-4x8-with-cache
+      - nscloud-cache-size-50gb
+      - nscloud-cache-tag-var__platform__-var__service__-helm-store-cache
+      - nscloud-git-mirror-1gb
+    steps:
+      # Setup
+      - uses: AtomiCloud/actions.setup-docker@v1.2.0
+
+      # Action
+      - uses: rlespinasse/github-slug-action@v5.x
+        with:
+          short-length: 8
+      - name: Build and Push Helm Charts
+        run: ./scripts/ci/publish_helm.sh
+        env:
+          DOMAIN: ${{ env.DOCKER_DOMAIN }}
+
+          GITHUB_REPO_REF: ${{ github.repository }}
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_BRANCH: ${{ env.GITHUB_REF_SLUG }}
+
+          DOCKER_PASSWORD: ${{ env.DOCKER_PASSWORD }}
+          DOCKER_USER: ${{ env.DOCKER_USER }}
+
+          LATEST_BRANCH: ${{ env.DOCKER_LATEST_BRANCH }}
+  <%= } %>
+
+  release:
+    name: Semantic Release
+    needs:
+      - precommit
+      <%= if (docker.commit) { %>
+      - docker
+      <%= } %>
+      <%= if (helm.commit) { %>
+      - helm
+      <%= } %>
+    if: github.ref == 'refs/heads/main'
+    runs-on:
+      - nscloud-ubuntu-22.04-amd64-4x8-with-cache
+      - nscloud-cache-size-50gb
+      - nscloud-cache-tag-var__platform__-var__service__-releaser-nix-store-cache
+      - nscloud-git-mirror-1gb
+    steps:
+      # Setup
+      - uses: AtomiCloud/actions.setup-nix@v1.2.1
+      - uses: AtomiCloud/actions.cache-npm@v1.0.1
+      - uses: AtomiCloud/actions.cache-go@v1.0.1
+      # action
+      - uses: rlespinasse/github-slug-action@v5.x
+        with:
+          short-length: 8
+      - name: Release
+        env:
+          # needed for releaser
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          <%= if (docker.release || helm.release) { %>
+          # needed for helm & docker release
+          DOMAIN: ${{ env.DOCKER_DOMAIN }}
+
+          GITHUB_REPO_REF: ${{ github.repository }}
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_BRANCH: ${{ env.GITHUB_REF_SLUG_URL }}
+
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          DOCKER_USER: ${{ env.DOCKER_USER }}
+          <%= } %>
+
+        run: nix develop .#releaser -c scripts/ci/release.sh

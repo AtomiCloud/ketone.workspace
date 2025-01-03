@@ -1,0 +1,33 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+  <%= if (docker.commit || docker.release) { %>
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: daily
+  <%= } %>
+  <%= if (runtime == "go") { %>
+  - package-ecosystem: gomod
+    directory: /
+    schedule:
+      interval: daily
+  <%= } else if (runtime == "dotnet") { %>
+  - package-ecosystem: nuget
+    directory: /
+    schedule:
+      interval: daily
+  - package-ecosystem: dotnet-sdk
+    directory: /
+    schedule:
+      interval: daily
+  <%= } else if (runtime == "bun") { %>
+  bun install 
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+  <%= } %>
