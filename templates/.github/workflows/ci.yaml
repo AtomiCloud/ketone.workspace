@@ -18,7 +18,7 @@ jobs:
     runs-on:
       - nscloud-ubuntu-22.04-amd64-4x8-with-cache
       - nscloud-cache-size-50gb
-      - nscloud-cache-tag-var___platform___-var___service___-nix-store-cache
+      - nscloud-cache-tag-let___platform___-let___service___-nix-store-cache
       - nscloud-git-mirror-1gb
     steps:
       # Setup
@@ -40,10 +40,10 @@ jobs:
     strategy:
       matrix:
         configs:
-          - image-name: var___platform___-var___service___
+          - image-name: let___platform___-let___service___
             dockerfile: infra/Dockerfile
             context: .
-            platform: var___docker.platform___
+            platform: let___docker.platform___
     env:
       STRAT_DOCKER_IMAGE: ${{ matrix.configs.image-name }}
       STRAT_DOCKERFILE: ${{ matrix.configs.dockerfile }}
@@ -83,7 +83,7 @@ jobs:
     runs-on:
       - nscloud-ubuntu-22.04-amd64-4x8-with-cache
       - nscloud-cache-size-50gb
-      - nscloud-cache-tag-var___platform___-var___service___-helm-store-cache
+      - nscloud-cache-tag-let___platform___-let___service___-helm-store-cache
       - nscloud-git-mirror-1gb
     steps:
       # Setup
@@ -122,7 +122,7 @@ jobs:
     runs-on:
       - nscloud-ubuntu-22.04-amd64-4x8-with-cache
       - nscloud-cache-size-50gb
-      - nscloud-cache-tag-var___platform___-var___service___-releaser-nix-store-cache
+      - nscloud-cache-tag-let___platform___-let___service___-releaser-nix-store-cache
       - nscloud-git-mirror-1gb
     steps:
       # Setup

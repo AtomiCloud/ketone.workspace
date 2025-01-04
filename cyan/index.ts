@@ -83,7 +83,7 @@ StartTemplateWithLambda(async (i: IInquirer, d: IDeterminism): Promise<Cyan> => 
           vars,
           parser: {
             varSyntax: [
-              ['var___', '___'],
+              ['let___', '___'],
               ['<%', '%>'],
             ],
           },
