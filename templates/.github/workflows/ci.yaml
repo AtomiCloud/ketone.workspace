@@ -23,7 +23,13 @@ jobs:
     steps:
       # Setup
       - uses: AtomiCloud/actions.setup-nix@v1.2.1
+      <%= if (runtime == "go") { %>
       - uses: AtomiCloud/actions.cache-go@v1.0.1
+      <%= } else if (runtime == "dotnet") { %>
+      - uses: AtomiCloud/actions.cache-nuget@v1.0.1
+      <%= } else if (runtime == "bun") { %>
+      - uses: AtomiCloud/actions.cache-bun@v1.0.1
+      <%= } %>
 
       # pre commit
       - name: Run pre-commit
@@ -128,7 +134,13 @@ jobs:
       # Setup
       - uses: AtomiCloud/actions.setup-nix@v1.2.1
       - uses: AtomiCloud/actions.cache-npm@v1.0.1
+      <%= if (runtime == "go") { %>
       - uses: AtomiCloud/actions.cache-go@v1.0.1
+      <%= } else if (runtime == "dotnet") { %>
+      - uses: AtomiCloud/actions.cache-nuget@v1.0.1
+      <%= } else if (runtime == "bun") { %>
+      - uses: AtomiCloud/actions.cache-bun@v1.0.1
+      <%= } %>
       # action
       - uses: rlespinasse/github-slug-action@v5.x
         with:
