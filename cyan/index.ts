@@ -51,8 +51,8 @@ async function PromptHelm(i: IInquirer): Promise<[{ commit: boolean; release: bo
 }
 
 StartTemplateWithLambda(async (i: IInquirer, d: IDeterminism): Promise<Cyan> => {
-  const rt = await i.select('Runtime', ['Bun', '.NET', 'Go'], 'The Runtime to setup for this workspace');
-  const runtime = rt == 'Bun' ? 'bun' : rt == '.NET' ? 'dotnet' : 'go';
+  const rt = await i.select('Runtime', ['None', 'Bun', '.NET', 'Go'], 'The Runtime to setup for this workspace');
+  const runtime = rt == 'Bun' ? 'bun' : rt == '.NET' ? 'dotnet' : rt == 'Go' ? 'go' : 'none';
 
   const p = await i.text('Platform', 'LPSM Service Tree Platform');
   const s = await i.text('Service', 'LPSM Service Tree Service');
