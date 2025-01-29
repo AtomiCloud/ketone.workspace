@@ -22,13 +22,13 @@ jobs:
       - nscloud-git-mirror-1gb
     steps:
       # Setup
-      - uses: AtomiCloud/actions.setup-nix@v1.2.1
+      - uses: AtomiCloud/actions.setup-nix@v1
       <%= if (runtime == "go") { %>
-      - uses: AtomiCloud/actions.cache-go@v1.0.1
+      - uses: AtomiCloud/actions.cache-go@v1
       <%= } else if (runtime == "dotnet") { %>
-      - uses: AtomiCloud/actions.cache-nuget@v1.0.1
+      - uses: AtomiCloud/actions.cache-nuget@v1
       <%= } else if (runtime == "bun") { %>
-      - uses: AtomiCloud/actions.cache-bun@v1.0.1
+      - uses: AtomiCloud/actions.cache-bun@v1
       <%= } %>
 
       # pre commit
@@ -57,12 +57,7 @@ jobs:
       STRAT_DOCKER_PLATFORM: ${{ matrix.configs.platform }}
     steps:
       # Setup
-      - uses: AtomiCloud/actions.setup-docker@v1.2.0
-
-      # action
-      - uses: rlespinasse/github-slug-action@v5.x
-        with:
-          short-length: 8
+      - uses: AtomiCloud/actions.setup-docker@v1
       - name: Build and Push Docker
         run: ./scripts/ci/ci-docker.sh
         env:
@@ -93,12 +88,7 @@ jobs:
       - nscloud-git-mirror-1gb
     steps:
       # Setup
-      - uses: AtomiCloud/actions.setup-docker@v1.2.0
-
-      # Action
-      - uses: rlespinasse/github-slug-action@v5.x
-        with:
-          short-length: 8
+      - uses: AtomiCloud/actions.setup-docker@v1
       - name: Build and Push Helm Charts
         run: ./scripts/ci/publish_helm.sh
         env:
@@ -132,19 +122,16 @@ jobs:
       - nscloud-git-mirror-1gb
     steps:
       # Setup
-      - uses: AtomiCloud/actions.setup-nix@v1.2.1
-      - uses: AtomiCloud/actions.cache-npm@v1.0.1
+      - uses: AtomiCloud/actions.setup-nix@v1
+      - uses: AtomiCloud/actions.cache-npm@v1
       <%= if (runtime == "go") { %>
-      - uses: AtomiCloud/actions.cache-go@v1.0.1
+      - uses: AtomiCloud/actions.cache-go@v1
       <%= } else if (runtime == "dotnet") { %>
-      - uses: AtomiCloud/actions.cache-nuget@v1.0.1
+      - uses: AtomiCloud/actions.cache-nuget@v1
       <%= } else if (runtime == "bun") { %>
-      - uses: AtomiCloud/actions.cache-bun@v1.0.1
+      - uses: AtomiCloud/actions.cache-bun@v1
       <%= } %>
       # action
-      - uses: rlespinasse/github-slug-action@v5.x
-        with:
-          short-length: 8
       - name: Release
         env:
           # needed for releaser
