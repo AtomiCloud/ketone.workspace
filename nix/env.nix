@@ -2,12 +2,7 @@
 with packages;
 {
   system = [
-    coreutils
-    findutils
-    gnugrep
-    gnused
-    jq
-    yq
+    atomiutils
   ];
 
   dev = [
@@ -24,8 +19,5 @@ with packages;
     # core
     treefmt
     shellcheck
-  ];
-
-  releaser = [
   ];
 }
