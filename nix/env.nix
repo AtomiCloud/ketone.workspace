@@ -8,6 +8,7 @@ with packages;
   dev = [
     pls
     git
+    sg
   ];
 
   main = [

@@ -6,6 +6,7 @@ let
       with atomi;
       {
         inherit
+          sg
           atomiutils
           pls;
       }
