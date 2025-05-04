@@ -10,16 +10,22 @@ async function PromptDocker(
     platform: '',
     release: false,
   };
-  const dc = await i.confirm('Enable Docker (y/n)', 'Enable Dockerfile and Docker CI');
+  const dc = await i.confirm('Enable Docker (y/n)', 'atomi/workspace/enable-docker', 'Enable Dockerfile and Docker CI');
   if (dc) {
     docker.commit = dc;
     // prompt for platform
-    const dp = await i.checkbox('Docker Platforms', ['ARM', 'Intel'], 'Platform target platforms to target');
+    const dp = await i.checkbox(
+      'Docker Platforms',
+      ['ARM', 'Intel'],
+      'atomi/workspace/docker-platforms',
+      'Platform target platforms to target',
+    );
     docker.platform = dp.map(x => (x == 'ARM' ? 'linux/arm64' : 'linux/amd64')).join(',');
 
     // prompt for release
     const dr = await i.confirm(
       'Enable Docker Release (y/n)',
+      'atomi/workspace/enable-docker-release',
       'Enable script to retag Docker image when Semantic Release triggers',
     );
     docker.release = dr;
@@ -42,8 +48,16 @@ async function PromptHelm(i: IInquirer): Promise<[{ commit: boolean; release: bo
     release: false,
   };
 
-  helm.commit = await i.confirm('Helm Chart Per Commit (y/n)', 'Publish a new helm chart with SHA & Branch per commit');
-  helm.release = await i.confirm('Helm Chart On Release (y/n)', 'Publish a helm chart with Semantic Release');
+  helm.commit = await i.confirm(
+    'Helm Chart Per Commit (y/n)',
+    'atomi/workspace/enable-helm-commit',
+    'Publish a new helm chart with SHA & Branch per commit',
+  );
+  helm.release = await i.confirm(
+    'Helm Chart On Release (y/n)',
+    'atomi/workspace/enable-helm-release',
+    'Publish a helm chart with Semantic Release',
+  );
 
   if (!helm.commit && !helm.release) exclude.push('**/publish_helm.sh');
 
@@ -51,11 +65,16 @@ async function PromptHelm(i: IInquirer): Promise<[{ commit: boolean; release: bo
 }
 
 StartTemplateWithLambda(async (i: IInquirer, d: IDeterminism): Promise<Cyan> => {
-  const rt = await i.select('Runtime', ['None', 'Bun', '.NET', 'Go'], 'The Runtime to setup for this workspace');
+  const rt = await i.select(
+    'Runtime',
+    ['None', 'Bun', '.NET', 'Go'],
+    'atomi/workspace/runtime',
+    'The Runtime to setup for this workspace',
+  );
   const runtime = rt == 'Bun' ? 'bun' : rt == '.NET' ? 'dotnet' : rt == 'Go' ? 'go' : 'none';
 
-  const p = await i.text('Platform', 'LPSM Service Tree Platform');
-  const s = await i.text('Service', 'LPSM Service Tree Service');
+  const p = await i.text('Platform', 'atomi/workspace/platform', 'LPSM Service Tree Platform');
+  const s = await i.text('Service', 'atomi/workspace/service', 'LPSM Service Tree Service');
 
   const platform = p.toLowerCase();
   const service = s.toLowerCase();

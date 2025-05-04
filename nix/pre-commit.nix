@@ -7,6 +7,7 @@ pre-commit-lib.run {
     # formatter
     treefmt = {
       enable = true;
+      package = formatter;
       excludes = [
         ".*node_modules.*"
         ".*templates.*"
@@ -67,9 +68,4 @@ pre-commit-lib.run {
 
   };
 
-  settings = {
-    treefmt = {
-      package = formatter;
-    };
-  };
 }
