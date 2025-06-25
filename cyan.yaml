@@ -8,3 +8,4 @@ tags: ['atomicloud', 'generic']
 readme: cyan/README.MD
 processors: ['cyan/default']
 plugins: []
+templates: []
