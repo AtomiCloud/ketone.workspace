@@ -1,0 +1,10 @@
+serviceTree: &serviceTree
+  landscape: lapras
+  platform: let___platform___
+  service: &service let___service___
+  layer: '2'
+
+tags: &tags
+  atomi.cloud/platform: let___platform___
+  atomi.cloud/service: let___service___
+  atomi.cloud/layer: '2'

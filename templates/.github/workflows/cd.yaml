@@ -1,19 +1,14 @@
-name: CI
+# <%= if (docker || helm) { %>
+name: CD
 
 on:
   push:
-
+    tags:
+      - 'v*.*.*'
 jobs:
-  precommit:
-    name: Pre-Commit
-    uses: ./.github/workflows/⚡reusable-precommit.yaml
-    secrets: inherit
-    with:
-      atomi_platform: let___platform___
-      atomi_service: let___service___
   # <%= if (docker) { %>
   docker:
-    name: Build Docker
+    name: Build Docker Image
     uses: ./.github/workflows/⚡reusable-docker.yaml
     secrets: inherit
     with:
@@ -22,6 +17,8 @@ jobs:
 
       dockerfile: ./infra/Dockerfile
       image_name: api
+
+      version: ${{ github.ref_name }}
   # <%= } %>
   # <%= if (helm) { %>
   helm:
@@ -32,4 +29,7 @@ jobs:
       atomi_platform: let___platform___
       atomi_service: let___service___
       chart_path: ./infra/root_chart
+
+      version: ${{ github.ref_name }}
   # <%= } %>
+# <%= } %>

@@ -1,66 +1,28 @@
-import { Cyan, GlobType, IDeterminism, IInquirer, StartTemplateWithLambda } from '@atomicloud/cyan-sdk';
+import { type Cyan, GlobType, type IDeterminism, type IInquirer, StartTemplateWithLambda } from '@atomicloud/cyan-sdk';
 
-async function PromptDocker(
-  i: IInquirer,
-): Promise<[{ commit: boolean; release: boolean; platform: string }, string[]]> {
+async function PromptDocker(i: IInquirer): Promise<[boolean, string[]]> {
   const exclude: string[] = [];
-  // prompt for docker
-  const docker = {
-    commit: false,
-    platform: '',
-    release: false,
-  };
-  const dc = await i.confirm('Enable Docker (y/n)', 'atomi/workspace/enable-docker', 'Enable Dockerfile and Docker CI');
-  if (dc) {
-    docker.commit = dc;
-    // prompt for platform
-    const dp = await i.checkbox(
-      'Docker Platforms',
-      ['ARM', 'Intel'],
-      'atomi/workspace/docker-platforms',
-      'Platform target platforms to target',
-    );
-    docker.platform = dp.map(x => (x == 'ARM' ? 'linux/arm64' : 'linux/amd64')).join(',');
 
-    // prompt for release
-    const dr = await i.confirm(
-      'Enable Docker Release (y/n)',
-      'atomi/workspace/enable-docker-release',
-      'Enable script to retag Docker image when Semantic Release triggers',
-    );
-    docker.release = dr;
-    if (!dr) {
-      exclude.push('**/publish_docker.sh');
-    }
-  } else {
+  const docker = await i.confirm('Enable Docker (y/n)', 'atomi/workspace/enable-docker', 'Enable Docker Integration');
+  if (!docker) {
     exclude.push('**/Dockerfile');
-    exclude.push('**/ci-docker.sh');
-    exclude.push('**/publish_docker.sh');
+    exclude.push('**/docker.sh');
+    exclude.push('**/⚡reusable-docker.yaml');
   }
   return [docker, exclude];
 }
 
-async function PromptHelm(i: IInquirer): Promise<[{ commit: boolean; release: boolean }, string[]]> {
+async function PromptHelm(i: IInquirer): Promise<[boolean, string[]]> {
   const exclude: string[] = [];
-  // prompt for docker
-  const helm = {
-    commit: false,
-    release: false,
-  };
 
-  helm.commit = await i.confirm(
-    'Helm Chart Per Commit (y/n)',
-    'atomi/workspace/enable-helm-commit',
-    'Publish a new helm chart with SHA & Branch per commit',
-  );
-  helm.release = await i.confirm(
-    'Helm Chart On Release (y/n)',
-    'atomi/workspace/enable-helm-release',
-    'Publish a helm chart with Semantic Release',
-  );
+  const helm = await i.confirm('Enable Helm (y/n)', 'atomi/workspace/enable-helm', 'Enable Helm Chart Integration');
 
-  if (!helm.commit && !helm.release) exclude.push('**/publish_helm.sh');
-
+  if (!helm) {
+    exclude.push('**/infra/root_chart/**/*');
+    exclude.push('**/infra/root_chart/**/*.*');
+    exclude.push('**/helm.sh');
+    exclude.push('**/⚡reusable-helm.yaml');
+  }
   return [helm, exclude];
 }
 
@@ -71,7 +33,7 @@ StartTemplateWithLambda(async (i: IInquirer, d: IDeterminism): Promise<Cyan> => 
     'atomi/workspace/runtime',
     'The Runtime to setup for this workspace',
   );
-  const runtime = rt == 'Bun' ? 'bun' : rt == '.NET' ? 'dotnet' : rt == 'Go' ? 'go' : 'none';
+  const runtime = rt === 'Bun' ? 'bun' : rt === '.NET' ? 'dotnet' : rt === 'Go' ? 'go' : 'none';
 
   const p = await i.text('Platform', 'atomi/workspace/platform', 'LPSM Service Tree Platform');
   const s = await i.text('Service', 'atomi/workspace/service', 'LPSM Service Tree Service');

@@ -9,16 +9,23 @@
 [ "${GITHUB_BRANCH}" = '' ] && echo "❌ 'GITHUB_BRANCH' env var not set" && exit 1
 [ "${GITHUB_REPO_REF}" = '' ] && echo "❌ 'GITHUB_REPO_REF' env var not set" && exit 1
 
-HELM_VERSION="$1"
+chart_path="$1"
+SEMVER_VERSION="$2"
 
 set -euo pipefail
 
 SHA="$(echo "${GITHUB_SHA}" | head -c 6)"
 # shellcheck disable=SC2001
 BRANCH="$(echo "${GITHUB_BRANCH}" | sed 's/[._-]*$//')"
-IMAGE_VERSION="${SHA}-${BRANCH}"
+COMMIT_VERSION="${SHA}-${BRANCH}"
 
-[ "${HELM_VERSION}" = '' ] && HELM_VERSION="v0.0.0-${IMAGE_VERSION}"
+if [ "${SEMVER_VERSION}" = '' ]; then
+  HELM_VERSION="v0.0.0-${COMMIT_VERSION}"
+  IMAGE_VERSION="${COMMIT_VERSION}"
+else
+  HELM_VERSION="${SEMVER_VERSION}"
+  IMAGE_VERSION="${SEMVER_VERSION}"
+fi
 
 echo "📝 Generating Image tags..."
 echo "📝 Helm version: ${HELM_VERSION}"
@@ -46,7 +53,7 @@ onExit() {
 }
 trap onExit EXIT
 
-cd ./infra/root_chart || exit
+cd "${chart_path}" || exit
 
 # login to registry
 echo "🔐 Logging into docker registry..."

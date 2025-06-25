@@ -4,7 +4,7 @@ updates:
     directory: /
     schedule:
       interval: daily
-  <%= if (docker.commit || docker.release) { %>
+  <%= if (docker) { %>
   - package-ecosystem: docker
     directory: /
     schedule:

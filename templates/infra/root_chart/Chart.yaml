@@ -1,0 +1,7 @@
+apiVersion: v2
+name: root-chart
+description: Root Chart for let___platform___ let___service___
+
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
