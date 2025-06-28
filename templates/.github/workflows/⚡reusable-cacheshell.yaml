@@ -20,8 +20,8 @@ on:
         type: boolean
 
 jobs:
-  cacheshell-linux:
-    name: Cache Shell Linux
+  cacheshell:
+    name: Cache Shell
     strategy:
       matrix:
         platform:
