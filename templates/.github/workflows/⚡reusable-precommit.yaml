@@ -1,4 +1,4 @@
-name: Pre-Commit
+name: ⚡ Reusable Pre-Commit
 
 on:
   workflow_call:

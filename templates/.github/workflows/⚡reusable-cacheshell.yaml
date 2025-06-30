@@ -1,4 +1,4 @@
-name: Release
+name: ⚡ Reusable Cache Shell
 
 on:
   workflow_call:
