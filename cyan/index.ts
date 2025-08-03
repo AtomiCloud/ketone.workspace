@@ -43,10 +43,16 @@ StartTemplateWithLambda(async (i: IInquirer, d: IDeterminism): Promise<Cyan> => 
 
   const [docker, dockerExclude] = await PromptDocker(i);
   const [helm, helmExclude] = await PromptHelm(i);
-
   const exclude = [...dockerExclude, ...helmExclude];
 
-  const vars = { platform, service, runtime, docker, helm };
+  const secret = await i.confirm(
+    'Enable Secret Management (y/n)',
+    'atomi/workspace/enable-secret',
+    'Enable Secret Management',
+  );
+  if (!secret) exclude.push('**/scripts/local/secrets.sh');
+
+  const vars = { platform, service, runtime, docker, helm, secret };
 
   return {
     processors: [

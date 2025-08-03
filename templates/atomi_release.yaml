@@ -74,6 +74,9 @@ types:
       default:
         desc: Release a new features
         release: minor
+      breaking:
+        desc: Release a breaking change
+        release: major
   - type: fix
     section: 🐛 Bug Fixes 🐛
     desc: A bug fix
@@ -139,4 +142,19 @@ types:
     scopes:
       default:
         desc: Dependency updates
+        release: false
+      patch:
+        desc: Dependency updates are patches
+        release: patch
+      minor:
+        desc: Dependency updates are minor
+        release: minor
+      major:
+        desc: Dependency updates are major
+        release: major
+  - type: chore
+    desc: Chores like test, attempts, typos, etc
+    scopes:
+      default:
+        desc: Chores
         release: false

@@ -11,4 +11,6 @@ tasks:
       <%= } else if (runtime == "bun") { %>
       - bun install
       <%= } %>
+      <%= if (secret) { %>
       - ./scripts/local/secrets.sh
+      <%= } %>
