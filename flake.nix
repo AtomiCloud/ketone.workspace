@@ -7,8 +7,8 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     # registry
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nixpkgs-2505.url = "nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     atomipkgs.url = "github:AtomiCloud/nix-registry/v2";
 
   };
@@ -22,16 +22,16 @@
 
       # registries
     , atomipkgs
-    , nixpkgs-unstable
     , nixpkgs-2505
+    , nixpkgs-unstable
 
     } @inputs:
     (flake-utils.lib.eachDefaultSystem
       (
         system:
         let
-          pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
           pkgs-2505 = nixpkgs-2505.legacyPackages.${system};
+          pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
           atomi = atomipkgs.packages.${system};
           pre-commit-lib = pre-commit-hooks.lib.${system};
         in

@@ -10,14 +10,16 @@ pre-commit-lib.run {
       package = formatter;
       excludes = [
         ".*node_modules.*"
-        ".*templates.*"
         ".*(Changelog|README|CommitConventions).+(MD|md)"
+        ".*infra/root_chart.*"
+        ".*github.*"
       ];
     };
 
     # linters From https://github.com/cachix/pre-commit-hooks.nix
     shellcheck.enable = false;
 
+    # custom precommits 
     a-biome = {
       enable = true;
       name = "Biome Lint";
@@ -51,7 +53,6 @@ pre-commit-lib.run {
       entry = "${packages.shellcheck}/bin/shellcheck";
       files = ".*sh$";
       language = "system";
-      excludes = [ ".*templates.*" ];
       pass_filenames = true;
     };
 
@@ -65,5 +66,4 @@ pre-commit-lib.run {
     };
 
   };
-
 }

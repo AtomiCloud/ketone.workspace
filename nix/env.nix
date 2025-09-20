@@ -8,17 +8,22 @@ with packages;
   dev = [
     pls
     git
-    sg
   ];
 
   main = [
     infisical
     bun
+    cyanprint
   ];
 
   lint = [
     # core
     treefmt
     shellcheck
+    sg
+  ];
+
+  releaser = [
+    sg
   ];
 }

@@ -1,0 +1,8 @@
+version: '3'
+
+tasks:
+  setup:
+    desc: 'Setup the repository'
+    dir: cyan
+    cmds:
+      - bun install

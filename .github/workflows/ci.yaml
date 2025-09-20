@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  precommit:
+    name: Pre-Commit
+    uses: ./.github/workflows/⚡reusable-precommit.yaml
+    secrets: inherit
+    with:
+      atomi_platform: ketone
+      atomi_service: workspace
+  #
+  docker-template:
+    name: Build Template Docker
+    uses: ./.github/workflows/⚡reusable-docker.yaml
+    secrets: inherit
+    with:
+      atomi_platform: ketone
+      atomi_service: workspace
+
+      dockerfile: ./cyan/template.Dockerfile
+      context: ./cyan
+      image_name: template
+  docker-blob:
+    name: Build Blob Docker
+    uses: ./.github/workflows/⚡reusable-docker.yaml
+    secrets: inherit
+    with:
+      atomi_platform: ketone
+      atomi_service: workspace
+
+      dockerfile: ./cyan/blob.Dockerfile
+      image_name: blob
+  #
+  #

@@ -6,8 +6,9 @@ let
       with atomi;
       {
         inherit
-          sg
           atomiutils
+          cyanprint
+          sg
           pls;
       }
     );
@@ -18,13 +19,15 @@ let
     nix-2505 = (
       with pkgs-2505;
       {
+
         inherit
+
           git
 
           infisical
           bun
-
           biome
+
           treefmt
           shellcheck
           ;

@@ -3,15 +3,9 @@ set -eou pipefail
 
 # install dependencies
 echo "⬇️ Installing Dependencies..."
-# <%= if (runtime == "go") { %>
-go mod tidy
-# <%= } %>
-# <%= if (runtime == "dotnet") { %>
-dotnet restore
-# <%= } %>
-# <%= if (runtime == "bun") { %>
-bun install
-# <%= } %>
+
+cd cyan && bun install && cd ..
+
 echo "✅ Done!"
 
 # run precommit

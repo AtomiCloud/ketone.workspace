@@ -4,18 +4,19 @@ updates:
     directory: /
     schedule:
       interval: daily
-  <%= if (docker) { %>
+  # <%= if (docker) { %>
   - package-ecosystem: docker
     directory: /
     schedule:
       interval: daily
-  <%= } %>
-  <%= if (runtime == "go") { %>
+  # <%= } %>
+  # <%= if (runtime == "go") { %>
   - package-ecosystem: gomod
     directory: /
     schedule:
       interval: daily
-  <%= } else if (runtime == "dotnet") { %>
+  # <%= } %>
+  # <%= if (runtime == "dotnet") { %>
   - package-ecosystem: nuget
     directory: /
     schedule:
@@ -24,9 +25,10 @@ updates:
     directory: /
     schedule:
       interval: daily
-  <%= } else if (runtime == "bun") { %>
+  # <%= } %>
+  # <%= if (runtime == "bun") { %>
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: daily
-  <%= } %>
+  # <%= } %>
