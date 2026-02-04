@@ -50,7 +50,12 @@ StartTemplateWithLambda(async (i: IInquirer, d: IDeterminism): Promise<Cyan> => 
     'atomi/workspace/enable-secret',
     'Enable Secret Management',
   );
-  if (!secret) exclude.push('**/scripts/local/secrets.sh');
+  if (!secret)
+    exclude.push(
+      '**/scripts/local/secrets.sh',
+      '**/docs/developer/standard/infisical.md',
+      '**/.claude/skill/infisical/**/*.*',
+    );
 
   const vars = { platform, service, runtime, docker, helm, secret };
 
