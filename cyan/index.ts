@@ -8,6 +8,9 @@ async function PromptDocker(i: IInquirer): Promise<[boolean, string[]]> {
     exclude.push('**/Dockerfile');
     exclude.push('**/docker.sh');
     exclude.push('**/⚡reusable-docker.yaml');
+    exclude.push('**/docs/developer/standard/docker-push.md');
+    exclude.push('**/.claude/skills/docker-push/**/*');
+    exclude.push('**/.claude/skills/docker-push/**/*.*');
   }
   return [docker, exclude];
 }
@@ -22,6 +25,9 @@ async function PromptHelm(i: IInquirer): Promise<[boolean, string[]]> {
     exclude.push('**/infra/root_chart/**/*.*');
     exclude.push('**/helm.sh');
     exclude.push('**/⚡reusable-helm.yaml');
+    exclude.push('**/docs/developer/standard/helm-push.md');
+    exclude.push('**/.claude/skills/helm-push/**/*');
+    exclude.push('**/.claude/skills/helm-push/**/*.*');
   }
   return [helm, exclude];
 }
@@ -50,12 +56,12 @@ StartTemplateWithLambda(async (i: IInquirer, d: IDeterminism): Promise<Cyan> => 
     'atomi/workspace/enable-secret',
     'Enable Secret Management',
   );
-  if (!secret)
-    exclude.push(
-      '**/scripts/local/secrets.sh',
-      '**/docs/developer/standard/infisical.md',
-      '**/.claude/skill/infisical/**/*.*',
-    );
+  if (!secret) {
+    exclude.push('**/scripts/local/secrets.sh');
+    exclude.push('**/docs/developer/standard/infisical.md');
+    exclude.push('**/.claude/skills/infisical/**/*');
+    exclude.push('**/.claude/skills/infisical/**/*.*');
+  }
 
   const vars = { platform, service, runtime, docker, helm, secret };
 
