@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/AtomiCloud/ketone.workspace/compare/v1.1.1...v1.1.2) (2026-02-05)
+
+
+### 🐛 Bug Fixes 🐛
+
+* remove need for rosylnator ([752ef35](https://github.com/AtomiCloud/ketone.workspace/commit/752ef35ffe5ae9f9a7bd60e63ffe0cfa7840b7b4))
+
 ## [1.1.1](https://github.com/AtomiCloud/ketone.workspace/compare/v1.1.0...v1.1.1) (2026-02-05)
 
 
