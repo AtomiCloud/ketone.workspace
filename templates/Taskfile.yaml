@@ -3,22 +3,25 @@ version: '3'
 tasks:
   setup:
     desc: 'Setup the repository'
-    cmds: <%= if (runtime == "go") { %>
+    cmds: # <%= if (runtime == "go") { %>
       - go mod tidy
-      <%= } else if (runtime == "dotnet") { %>
+      # <%= } else if (runtime == "dotnet") { %>
       - dotnet restore
-      <%= } else if (runtime == "bun") { %>
+      # <%= } else if (runtime == "bun") { %>
       - bun install
-      <%= } %>
-      <%= if (secret) { %>
+      # <%= } %>
+      # <%= if (secret) { %>
       - ./scripts/local/secrets.sh
-      <%= } %>
+      # <%= } %>
+  lint:
+    cmds:
+      - pre-commit run --all
   deadcode:
     desc: 'Find code only used by tests or not used at all (requires verification)'
-    cmds: <%= if (runtime == "go") { %>
+    cmds: # <%= if (runtime == "go") { %>
       - deadcode ./...
-      - <%= } else if (runtime == "dotnet") { %>
+      # <%= } else if (runtime == "dotnet") { %>
       - dn-inspect --projects ./App --projects ./Domain --filter Unused --no-build
-      - <%= } else if (runtime == "bun") { %>
+      # <%= } else if (runtime == "bun") { %>
       - bun knip --include classMembers,types
-      - <%= } %>
+      # <%= } %>
