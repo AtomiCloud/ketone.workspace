@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/AtomiCloud/ketone.workspace/compare/v1.1.0...v1.1.1) (2026-02-05)
+
+
+### 🐛 Bug Fixes 🐛
+
+* incorrect deadcode and add lint commands ([94476be](https://github.com/AtomiCloud/ketone.workspace/commit/94476bec3465106cfe4948e361d638e96216f3c2))
+
 ## [1.1.0](https://github.com/AtomiCloud/ketone.workspace/compare/v1.0.0...v1.1.0) (2026-02-05)
 
 
