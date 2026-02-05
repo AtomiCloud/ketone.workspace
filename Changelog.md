@@ -1,3 +1,13 @@
+## [1.1.0](https://github.com/AtomiCloud/ketone.workspace/compare/v1.0.0...v1.1.0) (2026-02-05)
+
+
+### ✨ Features ✨
+
+* added helm and docker skill ([ec5e042](https://github.com/AtomiCloud/ketone.workspace/commit/ec5e0421b72b8bfaa391d7b8fe982cea1e47abdf))
+* include deadcode tooling ([155b36e](https://github.com/AtomiCloud/ketone.workspace/commit/155b36e5ba64213106b0569fdd963c40e9267a21))
+* include standard skills ([6e9c32d](https://github.com/AtomiCloud/ketone.workspace/commit/6e9c32d48cab6e96dc7f563e2baabd31b201d073))
+* update deadcode skill ([dc4d72a](https://github.com/AtomiCloud/ketone.workspace/commit/dc4d72a23fdb105db026a6f81137b04ce4da6bfe))
+
 ## 1.0.0 (2025-09-20)
 
 
