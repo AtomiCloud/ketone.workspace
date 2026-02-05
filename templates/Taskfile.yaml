@@ -13,3 +13,12 @@ tasks:
       <%= if (secret) { %>
       - ./scripts/local/secrets.sh
       <%= } %>
+  deadcode:
+    desc: 'Find code only used by tests or not used at all (requires verification)'
+    cmds: <%= if (runtime == "go") { %>
+      - deadcode ./...
+      - <%= } else if (runtime == "dotnet") { %>
+      - dn-inspect --projects ./App --projects ./Domain --filter Unused --no-build
+      - <%= } else if (runtime == "bun") { %>
+      - bun knip --include classMembers,types
+      - <%= } %>

@@ -1,4 +1,11 @@
-import { type Cyan, GlobType, type IDeterminism, type IInquirer, StartTemplateWithLambda } from '@atomicloud/cyan-sdk';
+import {
+  type Cyan,
+  type CyanGlob,
+  GlobType,
+  type IDeterminism,
+  type IInquirer,
+  StartTemplateWithLambda,
+} from '@atomicloud/cyan-sdk';
 
 async function PromptDocker(i: IInquirer): Promise<[boolean, string[]]> {
   const exclude: string[] = [];
@@ -65,18 +72,36 @@ StartTemplateWithLambda(async (i: IInquirer, d: IDeterminism): Promise<Cyan> => 
 
   const vars = { platform, service, runtime, docker, helm, secret };
 
+  const files: CyanGlob[] = [
+    {
+      root: 'templates',
+      glob: '**/*',
+      type: GlobType.Template,
+      exclude: exclude,
+    },
+  ];
+
+  if (runtime === 'bun') {
+    files.push({
+      root: 'additional/bun',
+      glob: '**/*',
+      type: GlobType.Template,
+      exclude: [],
+    });
+  } else if (runtime === 'dotnet') {
+    files.push({
+      root: 'additional/dotnet',
+      glob: '**/*',
+      type: GlobType.Template,
+      exclude: [],
+    });
+  }
+
   return {
     processors: [
       {
         name: 'cyan/default',
-        files: [
-          {
-            root: 'templates',
-            glob: '**/*',
-            type: GlobType.Template,
-            exclude: exclude,
-          },
-        ],
+        files,
         config: {
           vars,
           parser: {
