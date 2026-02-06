@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/AtomiCloud/ketone.workspace/compare/v1.1.2...v1.1.3) (2026-02-06)
+
+
+### 🐛 Bug Fixes 🐛
+
+* incorrect doc path ([933e0eb](https://github.com/AtomiCloud/ketone.workspace/commit/933e0ebfeecdb1bd32efbea4af82d037afdb6d5b))
+
 ## [1.1.2](https://github.com/AtomiCloud/ketone.workspace/compare/v1.1.1...v1.1.2) (2026-02-05)
 
 
