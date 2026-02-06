@@ -19,4 +19,4 @@ Package and push Helm charts to GitHub Container Registry (GHCR) as an OCI regis
 
 ## Reference
 
-For detailed documentation, see [docs/developer/standard/helm-push.md](../../../../docs/developer/standard/helm-push.md).
+For detailed documentation, see [docs/developer/standard/helm-push.md](../../../docs/developer/standard/helm-push.md).

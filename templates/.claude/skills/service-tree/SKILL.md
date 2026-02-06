@@ -19,4 +19,4 @@ All products and applications' resources in AtomiCloud are confined within the S
 
 ## Reference
 
-For detailed documentation, see [docs/developer/standard/service-tree.md](../../../../docs/developer/standard/service-tree.md).
+For detailed documentation, see [docs/developer/standard/service-tree.md](../../../docs/developer/standard/service-tree.md).

@@ -19,4 +19,4 @@ Build and push Docker images to GitHub Container Registry (GHCR) as part of CI/C
 
 ## Reference
 
-For detailed documentation, see [docs/developer/standard/docker-push.md](../../../../docs/developer/standard/docker-push.md).
+For detailed documentation, see [docs/developer/standard/docker-push.md](../../../docs/developer/standard/docker-push.md).

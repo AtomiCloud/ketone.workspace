@@ -18,4 +18,4 @@ CI/CD architecture using reusable workflows, Nix shells, and shell scripts for l
 
 ## Reference
 
-For detailed documentation, see [docs/developer/standard/ci-cd.md](../../../../docs/developer/standard/ci-cd.md).
+For detailed documentation, see [docs/developer/standard/ci-cd.md](../../../docs/developer/standard/ci-cd.md).

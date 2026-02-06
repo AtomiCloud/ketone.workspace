@@ -17,4 +17,4 @@ Shell scripts follow strict conventions for consistency, safety, and simplicity.
 
 ## Reference
 
-For detailed documentation, see [docs/developer/standard/shell-scripts.md](../../../../docs/developer/standard/shell-scripts.md).
+For detailed documentation, see [docs/developer/standard/shell-scripts.md](../../../docs/developer/standard/shell-scripts.md).

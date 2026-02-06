@@ -18,4 +18,4 @@ Pre-commit based linting for code quality and consistency.
 
 ## Reference
 
-For detailed documentation, see [docs/developer/standard/linting.md](../../../../docs/developer/standard/linting.md).
+For detailed documentation, see [docs/developer/standard/linting.md](../../../docs/developer/standard/linting.md).

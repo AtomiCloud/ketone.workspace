@@ -18,4 +18,4 @@ Infisical is a secret management platform used to export secrets to files or inj
 
 ## Reference
 
-For detailed documentation, see [docs/developer/standard/infisical.md](../../../../docs/developer/standard/infisical.md).
+For detailed documentation, see [docs/developer/standard/infisical.md](../../../docs/developer/standard/infisical.md).

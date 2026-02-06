@@ -18,4 +18,4 @@ This project uses the `pls` task runner (the `task` binary, aliased as `pls`) wi
 
 ## Reference
 
-For detailed documentation, see [docs/developer/standard/taskfile.md](../../../../docs/developer/standard/taskfile.md).
+For detailed documentation, see [docs/developer/standard/taskfile.md](../../../docs/developer/standard/taskfile.md).

@@ -18,4 +18,4 @@ Automated versioning and package publishing using the `sg` (Semantic Generator) 
 
 ## Reference
 
-For detailed documentation, see [docs/developer/standard/semantic-release.md](../../../../docs/developer/standard/semantic-release.md).
+For detailed documentation, see [docs/developer/standard/semantic-release.md](../../../docs/developer/standard/semantic-release.md).

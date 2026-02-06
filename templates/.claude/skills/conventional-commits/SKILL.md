@@ -18,4 +18,4 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ## Reference
 
-For detailed documentation, see [docs/developer/standard/conventional-commits.md](../../../../docs/developer/standard/conventional-commits.md).
+For detailed documentation, see [docs/developer/standard/conventional-commits.md](../../../docs/developer/standard/conventional-commits.md).

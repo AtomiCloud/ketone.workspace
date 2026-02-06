@@ -17,4 +17,4 @@ Language-agnostic workflow for detecting and removing unused code.
 
 ## Reference
 
-For detailed documentation, see [docs/developer/standard/deadcode.md](../../../../docs/developer/standard/deadcode.md).
+For detailed documentation, see [docs/developer/standard/deadcode.md](../../../docs/developer/standard/deadcode.md).
