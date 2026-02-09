@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/AtomiCloud/ketone.workspace/compare/v1.1.3...v1.1.4) (2026-02-09)
+
+
+### 🐛 Bug Fixes 🐛
+
+* remove deadcode dependency when runtime is none ([63d2a57](https://github.com/AtomiCloud/ketone.workspace/commit/63d2a57af1d4290def341b1f2fc8fa082dd8ab41))
+
 ## [1.1.3](https://github.com/AtomiCloud/ketone.workspace/compare/v1.1.2...v1.1.3) (2026-02-06)
 
 
