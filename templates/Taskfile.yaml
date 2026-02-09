@@ -9,13 +9,17 @@ tasks:
       - dotnet restore
       # <%= } else if (runtime == "bun") { %>
       - bun install
+      # <%= } else { %>
+      - echo "Completed"
       # <%= } %>
       # <%= if (secret) { %>
       - ./scripts/local/secrets.sh
       # <%= } %>
   lint:
+    desc: Lints the whole code-base
     cmds:
       - pre-commit run --all
+  # <%= if (runtime != "none") {
   deadcode:
     desc: 'Find code only used by tests or not used at all (requires verification)'
     cmds: # <%= if (runtime == "go") { %>
@@ -25,3 +29,4 @@ tasks:
       # <%= } else if (runtime == "bun") { %>
       - bun knip --include classMembers,types
       # <%= } %>
+  # <%= } %>

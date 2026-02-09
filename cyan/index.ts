@@ -70,6 +70,12 @@ StartTemplateWithLambda(async (i: IInquirer, d: IDeterminism): Promise<Cyan> => 
     exclude.push('**/.claude/skills/infisical/**/*.*');
   }
 
+  if (runtime === 'none') {
+    exclude.push('**/docs/developer/standard/deadcode.md');
+    exclude.push('**/.claude/skills/deadcode/**/*');
+    exclude.push('**/.claude/skills/deadcode/**/*.*');
+  }
+
   const vars = { platform, service, runtime, docker, helm, secret };
 
   const files: CyanGlob[] = [
