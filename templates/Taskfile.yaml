@@ -19,7 +19,7 @@ tasks:
     desc: Lints the whole code-base
     cmds:
       - pre-commit run --all
-  # <%= if (runtime != "none") {
+  # <%= if (runtime != "none") { %>
   deadcode:
     desc: 'Find code only used by tests or not used at all (requires verification)'
     cmds: # <%= if (runtime == "go") { %>
