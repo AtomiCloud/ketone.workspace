@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/AtomiCloud/ketone.workspace/compare/v1.1.4...v1.1.5) (2026-02-10)
+
+
+### 🐛 Bug Fixes 🐛
+
+* incorrect syntax ([cd82649](https://github.com/AtomiCloud/ketone.workspace/commit/cd8264924b11d5b27f3026f4eda9356c1c60a7ce))
+
 ## [1.1.4](https://github.com/AtomiCloud/ketone.workspace/compare/v1.1.3...v1.1.4) (2026-02-09)
 
 
