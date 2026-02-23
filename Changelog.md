@@ -1,3 +1,10 @@
+## [1.2.0](https://github.com/AtomiCloud/ketone.workspace/compare/v1.1.5...v1.2.0) (2026-02-23)
+
+
+### ✨ Features ✨
+
+* allow placeholder CD ([d20c2eb](https://github.com/AtomiCloud/ketone.workspace/commit/d20c2eb0b1967af39a52cd6c1440c6fee1378ffa))
+
 ## [1.1.5](https://github.com/AtomiCloud/ketone.workspace/compare/v1.1.4...v1.1.5) (2026-02-10)
 
 
