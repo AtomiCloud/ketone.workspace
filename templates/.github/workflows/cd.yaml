@@ -1,4 +1,3 @@
-# <%= if (docker || helm) { %>
 name: CD
 
 on:
@@ -6,6 +5,7 @@ on:
     tags:
       - 'v*.*.*'
 jobs:
+  # <%= if (docker || helm) { %>
   # <%= if (docker) { %>
   docker:
     name: Build Docker Image
@@ -32,4 +32,11 @@ jobs:
 
       version: ${{ github.ref_name }}
   # <%= } %>
+  # <%= } else { %>
+  placeholder:
+    name: Placeholder CD
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder Step
+        run: echo "Placeholder step ${{ github.ref_name }}"
 # <%= } %>
