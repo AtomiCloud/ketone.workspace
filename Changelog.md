@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/AtomiCloud/ketone.workspace/compare/v1.2.0...v1.2.1) (2026-02-25)
+
+
+### 🐛 Bug Fixes 🐛
+
+* correct bash set command flag order ([a8db0d3](https://github.com/AtomiCloud/ketone.workspace/commit/a8db0d3e7d734f70bc1412dc557245a6eab55e88))
+
 ## [1.2.0](https://github.com/AtomiCloud/ketone.workspace/compare/v1.1.5...v1.2.0) (2026-02-23)
 
 
