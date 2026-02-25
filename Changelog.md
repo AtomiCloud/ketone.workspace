@@ -1,3 +1,10 @@
+## [1.3.0](https://github.com/AtomiCloud/ketone.workspace/compare/v1.2.1...v1.3.0) (2026-02-25)
+
+
+### ✨ Features ✨
+
+* make release under bash ([6825bfd](https://github.com/AtomiCloud/ketone.workspace/commit/6825bfd245beff95cbb9d7a5e3fbfb1f4a0fe4cd))
+
 ## [1.2.1](https://github.com/AtomiCloud/ketone.workspace/compare/v1.2.0...v1.2.1) (2026-02-25)
 
 
