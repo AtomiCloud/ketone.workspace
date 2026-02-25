@@ -44,7 +44,7 @@ The standard login pattern from `scripts/local/secrets.sh`:
 
 ```bash
 #!/usr/bin/env bash
-set -eou pipefail
+set -euo pipefail
 
 export INFISICAL_API_URL="https://secrets.atomi.cloud"
 set +e
