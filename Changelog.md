@@ -1,3 +1,10 @@
+## [1.4.0](https://github.com/AtomiCloud/ketone.workspace/compare/v1.3.0...v1.4.0) (2026-02-26)
+
+
+### ✨ Features ✨
+
+* include dot files and coderabbit ([e9d8fdd](https://github.com/AtomiCloud/ketone.workspace/commit/e9d8fddc9eaffac10ea0c3cc13f8207787f48806))
+
 ## [1.3.0](https://github.com/AtomiCloud/ketone.workspace/compare/v1.2.1...v1.3.0) (2026-02-25)
 
 
