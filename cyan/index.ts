@@ -85,6 +85,12 @@ StartTemplateWithLambda(async (i: IInquirer, d: IDeterminism): Promise<Cyan> => 
       type: GlobType.Template,
       exclude: exclude,
     },
+    {
+      root: 'templates',
+      glob: '**/.*',
+      type: GlobType.Template,
+      exclude: exclude,
+    },
   ];
 
   if (runtime === 'bun') {
