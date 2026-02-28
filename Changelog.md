@@ -1,3 +1,10 @@
+## [1.6.0](https://github.com/AtomiCloud/ketone.workspace/compare/v1.5.0...v1.6.0) (2026-02-28)
+
+
+### ✨ Features ✨
+
+* remove markdownlint ([772e2d3](https://github.com/AtomiCloud/ketone.workspace/commit/772e2d3fff71b1977e99b5379fec1f1215fff4db))
+
 ## [1.5.0](https://github.com/AtomiCloud/ketone.workspace/compare/v1.4.0...v1.5.0) (2026-02-26)
 
 
