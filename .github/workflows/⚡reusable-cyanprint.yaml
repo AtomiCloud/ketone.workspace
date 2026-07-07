@@ -24,7 +24,7 @@ jobs:
       # Setup
       - uses: AtomiCloud/actions.setup-nix@v2
       #
-      - uses: AtomiCloud/actions.cache-bun@v1
+      - uses: AtomiCloud/actions.cache-bun@v2
       #
 
       # Pre Commit
